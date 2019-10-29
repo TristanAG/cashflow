@@ -8,13 +8,21 @@ function Expenses() {
 
   //something about this empty array as a dependency lets it hook into the
   //onMount or soemthing?
-  React.useEffect(() => {
-    const unsubscribe = getExpenses()
-  }, [])
+
+
+  // React.useEffect(() => {
+  //   const unsubscribe = getExpenses()
+  // }, [])
+
+  if (user) {
+    getExpenses()
+  }
+
 
   function getExpenses() {
     firebase.db
       .collection('expenses')
+      .where("postedBy.id", "==", user.uid)
       .orderBy('created', 'desc')
       .onSnapshot(handleSnapshot)
   }

@@ -11,7 +11,7 @@ function Expense({ expense, index }) {
   function handleDeleteExpense() {
     const expenseRef = firebase.db.collection('expenses').doc(expense.id)
     expenseRef.delete().then(() => {
-      // alert('baleted')
+      alert('bye bye 👋')
     }).catch(err => {
       console.error('error deleting expense', err)
     })
