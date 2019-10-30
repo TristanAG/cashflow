@@ -5,6 +5,7 @@ import Expense from './Expense'
 function Expenses() {
   const { firebase, user } = React.useContext(FirebaseContext)
   const [expenses, setExpenses] = React.useState([])
+  const [total, setTotal] = React.useState([])
 
   React.useEffect(() => {
     if (user) {
@@ -28,16 +29,19 @@ function Expenses() {
     getTotal(expenses)
   }
 
+  //haha, it's not very pretty, but it works!
   function getTotal(expenses) {
-    console.log('hellpo')
+    let total = 0
     expenses.map((exp) => {
-
+      const num = parseInt(exp.amount)
+      total += num
     })
+    setTotal(total)
   }
 
   return (
     <div>
-      <p><b>total:</b></p>
+      <p><b>total:</b> {total}</p>
       <div className="expenses-list">
         {expenses.map((expense, index) => (
           <Expense key={expense.id} expense={expense} index={index + 1} />
