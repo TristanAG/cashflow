@@ -11,8 +11,6 @@ class Firebase {
     this.db = app.firestore()
   }
 
-
-
   async register(name, email, password) {
     const newUser = await this.auth.createUserWithEmailAndPassword(
       email,
@@ -26,9 +24,8 @@ class Firebase {
   }
 
   setupUser(user) {
-    // console.log(user)
-    return this.db.collection('expenses').doc(user.user.uid).collection('expense').doc().set({
-      amount: 0
+    return this.db.collection('expenses').doc(user.uid).set({
+      name: user.displayName
     })
   }
 

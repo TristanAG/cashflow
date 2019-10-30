@@ -8,7 +8,7 @@ function useAuth() {
     //this is a listener, so we need to 'unsubscribe' once we're done with it
     const unsubscribe = firebase.auth.onAuthStateChanged(user => {
       if (user) {
-        console.log(user)
+        // console.log(user)
         setAuthUser(user)
       } else {
         setAuthUser(null)

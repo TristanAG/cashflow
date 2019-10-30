@@ -6,18 +6,11 @@ function Expenses() {
   const { firebase, user } = React.useContext(FirebaseContext)
   const [expenses, setExpenses] = React.useState([])
 
-  //something about this empty array as a dependency lets it hook into the
-  //onMount or soemthing?
-
-
-  // React.useEffect(() => {
-  //   const unsubscribe = getExpenses()
-  // }, [])
-
-  if (user) {
-    getExpenses()
-  }
-
+  React.useEffect(() => {
+    if (user) {
+      const unsubscribe = getExpenses()
+    }
+  }, [user])
 
   function getExpenses() {
     firebase.db
@@ -32,10 +25,19 @@ function Expenses() {
       return { id: doc.id, ...doc.data() }
     })
     setExpenses(expenses)
+    getTotal(expenses)
+  }
+
+  function getTotal(expenses) {
+    console.log('hellpo')
+    expenses.map((exp) => {
+
+    })
   }
 
   return (
     <div>
+      <p><b>total:</b></p>
       <div className="expenses-list">
         {expenses.map((expense, index) => (
           <Expense key={expense.id} expense={expense} index={index + 1} />
