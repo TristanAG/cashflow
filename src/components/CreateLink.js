@@ -83,6 +83,8 @@ function CreateLink(props) {
                         <option>🎮 Videogames</option>
                         <option>⚕️ Medical</option>
                         <option>🐈 Animals</option>
+                        <option>🎁 Gifts</option>
+                        <option>💭 Other</option>
                       </select>
                     </div>
                   </div>

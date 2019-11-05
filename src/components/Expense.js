@@ -20,7 +20,7 @@ function Expense({ expense, index }) {
   const postedByAuthUser = user && user.uid === expense.postedBy.id
 
   return (
-    <div className="card">
+    <div className="card has-background-light">
       <p>
         <span className="has-text-success"><b>{expense.amount}</b></span> | {expense.description} | {expense.category}
       </p>
