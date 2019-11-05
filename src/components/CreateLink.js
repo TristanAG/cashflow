@@ -3,6 +3,7 @@ import useFormValidation from './auth/useFormValidation'
 import validateCreateLink from './auth/validateCreateLink'
 import { FirebaseContext } from '../firebase'
 import { Link } from "react-router-dom"
+import moment from 'moment'
 
 const INITIAL_STATE = {
   category: "",
@@ -14,7 +15,9 @@ const INITIAL_STATE = {
 
 
 
+
 function CreateLink(props) {
+  const time = Date.now()
   const { firebase, user } = React.useContext(FirebaseContext)
   const { handleSubmit, handleChange, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense)
 
@@ -36,7 +39,11 @@ function CreateLink(props) {
           id: user.uid,
           name: user.displayName
         },
-        created: Date.now()
+        created: Date.now(),
+        monthCreated: moment(Date.now()).format('MMMM'),
+        yearCreated: moment(Date.now()).format('YYYY'),
+        dayCreated: moment(Date.now()).format('D'),
+        actualDay: moment(Date.now()).format('dddd')
       }
 
       firebase.db.collection('expenses').add(expense)
@@ -49,6 +56,7 @@ function CreateLink(props) {
       <div className="columns">
         <div className="column">
           <h3 className="has-text-grey-light">Add Expense</h3>
+          {/* <h4 className="has-text-info">{moment(Date.now()).format('dddd')}</h4> */}
         </div>
       </div>
 

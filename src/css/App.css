@@ -33,10 +33,15 @@
 }
 
 .expenses-list {
-  padding-left: 24px;
+  /* padding-left: 24px; */
+  padding: 88px;
 }
 
 .card {
   margin-bottom: 18px;
   padding: 8px;
+}
+
+.has-text-danger:hover {
+  cursor: pointer;
 }

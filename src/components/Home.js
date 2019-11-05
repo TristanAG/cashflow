@@ -9,7 +9,7 @@ class Home extends React.Component {
       <div className="Home section">
         <div className="container">
             <div className="columns">
-              <div className="column">
+              <div className="column is-one-third">
                 <div className="content">
                   <CreateLink />
                 </div>
