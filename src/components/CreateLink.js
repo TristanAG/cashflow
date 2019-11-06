@@ -19,7 +19,7 @@ const INITIAL_STATE = {
 function CreateLink(props) {
   const time = Date.now()
   const { firebase, user } = React.useContext(FirebaseContext)
-  const { handleSubmit, handleChange, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense)
+  const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense)
 
   const [amount, setAmount] = React.useState("")
 
@@ -29,9 +29,12 @@ function CreateLink(props) {
     } else {
       const { category, amount, business, paymentMethod, description } = values
 
+      //convert amount to number here
+      const amountNum = parseFloat(amount, 10)
+
       const expense = {
         category,
-        amount,
+        amount: amountNum,
         business,
         paymentMethod,
         description,
@@ -96,6 +99,7 @@ function CreateLink(props) {
                     <input
                       name="amount"
                       onChange={handleChange}
+                      onBlur={handleBlur}
                       value={values.amount}
                       placeholder="How much was the expense?"
                       autoComplete="off"
@@ -105,7 +109,7 @@ function CreateLink(props) {
                     />
                   </div>
                 </div>
-                {errors.description && <p className="has-text-danger">{errors.description}</p>}
+                {errors.amount && <p className="has-text-danger">{errors.amount}</p>}
 
                 {/* payment method should be a drop down or a radio button maybe  */}
 

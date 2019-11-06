@@ -28,7 +28,6 @@ function useFormValidation(initialState, validate, authenticate) {
   //that's pretty cool!
   function handleChange(event) {
     event.persist()
-    // console.log(event.target.value)
     setValues(previousValues => ({
       ...previousValues,
       [event.target.name]: event.target.value,

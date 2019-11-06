@@ -19,6 +19,12 @@ function Nav() {
               {user ? (
                 <>
                   <div>{user.displayName}</div>
+                  <Link to="/" className="nav-link">
+                    <h5 className="has-text-grey-light">expenses</h5>
+                  </Link>
+                  <Link to="/dashboard/" className="nav-link">
+                    <h5 className="has-text-grey-light">dashboard</h5>
+                  </Link>
                   <div onClick={() => firebase.logout()}>
                     <h5 className="has-text-grey-light">logout</h5>
                   </div>

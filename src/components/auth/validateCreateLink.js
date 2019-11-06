@@ -13,5 +13,17 @@ export default function validateCreateLink(values) {
     // } else if (!/^(ftp|http|https):\/\/[^ "]+$/.test(values.url)) {
     //   errors.url = "URL must be valid";
     // }
+
+  //amount errors
+  if (values.amount) {
+    if (isNaN(values.amount)) {
+      errors.amount = "Expense must be a numeric value"
+    }
+  }
+
+  if (!values.amount) {
+    errors.amount = "Please enter expense amount"
+  }
+
   return errors;
 }
