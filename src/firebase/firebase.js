@@ -11,22 +11,33 @@ class Firebase {
     this.db = app.firestore()
   }
 
+  //does register method work right now?
   async register(name, email, password) {
     const newUser = await this.auth.createUserWithEmailAndPassword(
       email,
       password
     )
 
-    this.setupUser(newUser)
+    this.setUserPrefs(newUser)
+
     return await newUser.user.updateProfile({
       displayName: name
     })
   }
 
-  setupUser(user) {
-    return this.db.collection('expenses').doc(user.uid).set({
-      name: user.displayName
-    })
+  //what does this actually do?
+  //oh, it returns the displayName from the user object to render on screen when they log in
+  //not sure if it works perfectly.
+  //does this even work? it's not actually doing anything
+  // setupUser(user) {
+  //   return this.db.collection('expenses').doc(user.uid).set({
+  //     name: user.displayName
+  //   })
+  // }
+
+  setUserPrefs(user) {
+    console.log('in set user prefs')
+    console.log(user.user.uid)
   }
 
   async login(email, password) {

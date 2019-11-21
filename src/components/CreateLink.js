@@ -18,7 +18,7 @@ const INITIAL_STATE = {
 
 function CreateLink(props) {
   const time = Date.now()
-  const { firebase, user } = React.useContext(FirebaseContext)
+  const { firebase, preferences, user } = React.useContext(FirebaseContext)
   const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense)
 
   const [amount, setAmount] = React.useState("")
@@ -60,6 +60,7 @@ function CreateLink(props) {
         <div className="column">
           <h3 className="has-text-grey-light">Add Expense</h3>
           {/* <h4 className="has-text-info">{moment(Date.now()).format('dddd')}</h4> */}
+          {preferences.fact}
         </div>
       </div>
 

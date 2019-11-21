@@ -10,10 +10,6 @@ function Expenses() {
   const [month, setMonth] = React.useState('')
   const [year, setYear] = React.useState('1999')
 
-  //use effect hook has its dependency, which is like the didComponentUpdate() lifecycle. so basically, it's dependency is the 'user' variable
-  //this variable first has a state of null, so therefore, we only execute the function / unsubscribe if use is not null (is present)
-  //pretty cool! learned something for sure here...
-
   React.useEffect(() => {
     if (user) {
       const unsubscribe = getExpenses()

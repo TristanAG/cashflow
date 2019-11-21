@@ -17,11 +17,32 @@ import useAuth from './auth/useAuth'
 import firebase, { FirebaseContext } from '../firebase'
 
 function Main() {
+  const [preferences, setPreferences] = React.useState({})
   const user = useAuth()
+
+  React.useEffect(() => {
+    if (user) {
+      const unsubscribe = loadUserPreferences()
+    }
+  }, [user])
+
+  function loadUserPreferences() {
+    firebase.db.collection('users').doc(user.uid).onSnapshot(handleSnapshot)
+  }
+
+  function handleSnapshot(snapshot) {
+    console.log('in handle snapshot')
+    console.log(snapshot.data())
+    setPreferences(snapshot.data())
+  }
+
+  function updatePreferences(wrd) {
+    setPreferences(wrd)
+  }
 
   return (
     <Router>
-      <FirebaseContext.Provider value={{ user, firebase }}>
+      <FirebaseContext.Provider value={{ user, preferences, updatePreferences, firebase }}>
         <Nav />
         <section className="content-area">
           <Route path="/grocery-list/" component={GroceryList} />

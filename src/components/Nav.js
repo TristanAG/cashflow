@@ -4,6 +4,32 @@ import { FirebaseContext } from '../firebase'
 
 function Nav() {
   const { user, firebase } = React.useContext(FirebaseContext)
+  const [preferences, setPreferences] = React.useState({})
+
+  // React.useEffect(() => {
+  //   if (user) {
+  //     const unsubscribe = loadUserPreferences()
+  //   }
+  // }, [user])
+  //
+  // function loadUserPreferences() {
+  //   alert('in load user preferences')
+  //
+  //   const prefs = firebase.db.collection('users').doc(user.uid).onSnapshot(handleSnapshot)
+  // }
+  //
+  // function handleSnapshot(snapshot) {
+  //   console.log('in handle snapshot')
+  //   console.log(snapshot.data())
+  //   setPreferences(snapshot.data())
+  //   // const expenses = snapshot.docs.map(doc => {
+  //   //   return { id: doc.id, ...doc.data() }
+  //   // })
+  //   // setExpenses(expenses)
+  //   // getTotal(expenses)
+  // }
+
+
 
   return (
     <div className="nav section">
@@ -12,6 +38,7 @@ function Nav() {
           <div className="column">
             <div className="content">
               <Link to="/"><h3 className="has-text-grey">💵 cashflow.cool</h3></Link>
+              <h4>{preferences.fact}</h4>
             </div>
           </div>
           <div className="column">
