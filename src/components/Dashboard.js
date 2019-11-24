@@ -12,7 +12,6 @@ function Dashboard() {
   const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validatePreferences, handleUpdatePreferences)
   const [userPreferences, setUserPreferences] = React.useState({})
 
-
   React.useEffect(() => {
     if (user) {
       const unsubscribe = initPreferences()

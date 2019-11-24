@@ -32,11 +32,13 @@ function Main() {
 
   function handleSnapshot(snapshot) {
     console.log('in handle snapshot')
-    console.log(snapshot.data())
-    setPreferences(snapshot.data())
+    console.log(snapshot.data().preferences)
+    setPreferences(snapshot.data().preferences)
   }
 
   function updatePreferences(wrd) {
+    console.log('in updatePreferences')
+    console.log(wrd)
     setPreferences(wrd)
   }
 
@@ -45,6 +47,7 @@ function Main() {
       <FirebaseContext.Provider value={{ user, preferences, updatePreferences, firebase }}>
         <Nav />
         <section className="content-area">
+
           <Route path="/grocery-list/" component={GroceryList} />
           <Route path="/recipe-database/" component={RecipeDatabase}/>
           <Route path="/week-planner/" component={WeekPlanner} />
