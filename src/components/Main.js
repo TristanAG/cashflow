@@ -45,14 +45,18 @@ function Main() {
       <FirebaseContext.Provider value={{ user, preferences, updatePreferences, firebase }}>
         <Nav />
         <section className="content-area">
-          <Route path="/grocery-list/" component={GroceryList} />
-          <Route path="/recipe-database/" component={RecipeDatabase}/>
-          <Route path="/week-planner/" component={WeekPlanner} />
-          <Route path="/my-recipes/" component={MyRecipes} />
+          {user &&
+            <>
+              <Route path="/grocery-list/" component={GroceryList} />
+              <Route path="/recipe-database/" component={RecipeDatabase}/>
+              <Route path="/week-planner/" component={WeekPlanner} />
+              <Route path="/my-recipes/" component={MyRecipes} />
+              <Route path="/dashboard/" component={Dashboard} />
+            </>
+          }
           <Route path="/" exact component={Home} />
           <Route path="/login/" component={Login} />
           <Route path="/forgot/" component={ForgotPassword} />
-          <Route path="/dashboard/" component={Dashboard} />
         </section>
       </FirebaseContext.Provider>
     </Router>

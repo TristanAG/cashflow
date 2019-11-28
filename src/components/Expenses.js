@@ -20,6 +20,7 @@ function Expenses() {
 
     const month = moment(Date.now()).format('MMMM')
     const year = moment(Date.now()).format('YYYY')
+    
     setMonth(month)
     setYear(year)
 
