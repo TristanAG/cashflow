@@ -6,64 +6,43 @@ function Nav() {
   const { user, firebase } = React.useContext(FirebaseContext)
   const [preferences, setPreferences] = React.useState({})
 
-  // React.useEffect(() => {
-  //   if (user) {
-  //     const unsubscribe = loadUserPreferences()
-  //   }
-  // }, [user])
-  //
-  // function loadUserPreferences() {
-  //   alert('in load user preferences')
-  //
-  //   const prefs = firebase.db.collection('users').doc(user.uid).onSnapshot(handleSnapshot)
-  // }
-  //
-  // function handleSnapshot(snapshot) {
-  //   console.log('in handle snapshot')
-  //   console.log(snapshot.data())
-  //   setPreferences(snapshot.data())
-  //   // const expenses = snapshot.docs.map(doc => {
-  //   //   return { id: doc.id, ...doc.data() }
-  //   // })
-  //   // setExpenses(expenses)
-  //   // getTotal(expenses)
-  // }
-
-
-
   return (
-    <div className="nav section">
-      <div className="container">
-        <div className="columns is-mobile">
-          <div className="column">
-            <div className="content">
-              <Link to="/"><h3 className="has-text-grey">💵 cashflow.cool</h3></Link>
-              <h4>{preferences.fact}</h4>
-            </div>
-          </div>
-          <div className="column">
-            <div className="content has-text-right">
-              {user ? (
-                <>
-                  <div>{user.displayName}</div>
-                  <Link to="/" className="nav-link">
-                    <h5 className="has-text-grey-light">expenses</h5>
-                  </Link>
-                  <Link to="/dashboard/" className="nav-link">
-                    <h5 className="has-text-grey-light">dashboard</h5>
-                  </Link>
-                  <div onClick={() => firebase.logout()}>
-                    <h5 className="has-text-grey-light">logout</h5>
-                  </div>
-                </>
-              ) : <Link to="/login/" className="nav-link">
-                <h5 className="has-text-grey-light">login</h5>
-              </Link>}
+    <nav class="navbar container" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <Link to="/" className="navbar-item">
+          <h3 className="has-text-grey">💵 cashflow.cool</h3>
+        </Link>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <Link to="/" className="navbar-item">
+            Expenses
+          </Link>
+
+          <Link to="/dashboard/" className="navbar-item">
+            Dashboard
+          </Link>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              {user
+                ? <div onClick={() => firebase.logout()} className="button is-light">Log out</div>
+                : <Link to="/login/" className="button is-light">Log in</Link>
+              }
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   )
 }
 
