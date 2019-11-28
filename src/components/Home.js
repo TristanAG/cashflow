@@ -4,9 +4,9 @@ import CreateLink from './CreateLink'
 import Expenses from './Expenses'
 import FirebaseContext from '../firebase/context'
 
-// class Home extends React.Component {
 function Home() {
   const { firebase, user } = React.useContext(FirebaseContext)
+
   return (
     <div className="Home section">
       <div className="container">
@@ -24,7 +24,7 @@ function Home() {
             </div>
           </div>
         }
-        </div>
+      </div>
     </div>
   )
 }
