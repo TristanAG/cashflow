@@ -12,7 +12,7 @@ function Home() {
       <div className="container">
         {user &&
           <div className="columns">
-            <div className="column is-one-third">
+            <div className="column is-one-half form-area">
               <div className="content">
                 <CreateLink />
               </div>

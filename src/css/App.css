@@ -34,7 +34,7 @@
 
 .expenses-list {
   /* padding-left: 24px; */
-  padding: 88px;
+  /* padding: 88px; */
 }
 
 .card {
@@ -44,4 +44,8 @@
 
 .has-text-danger:hover {
   cursor: pointer;
+}
+
+.form-area {
+  padding-right: 80px;
 }
