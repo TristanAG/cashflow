@@ -1,5 +1,5 @@
-.nav {
-  /* margin-top: 24px; */
+.navbar {
+  margin-bottom: 30px;
 }
 
 .nav-link {
@@ -35,6 +35,7 @@
 .expenses-list {
   /* padding-left: 24px; */
   /* padding: 88px; */
+  padding-right: 16px;
 }
 
 .card {
