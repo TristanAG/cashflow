@@ -22,7 +22,7 @@ function Expense({ expense, index }) {
   return (
     <div className="card">
       <p>
-        <span className="has-text-success"><b>{expense.amount}</b></span> | {expense.description} | {expense.category}
+        <span className="has-text-success"><b>${expense.amount}</b></span> | {expense.description} | {expense.category}
       </p>
       <p>{expense.business} | {expense.paymentMethod} | {expense.postedBy.name}</p>
       {postedByAuthUser && <p className="has-text-danger has-text-right" onClick={handleDeleteExpense}>delete</p>}

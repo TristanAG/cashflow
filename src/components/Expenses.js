@@ -18,17 +18,10 @@ function Expenses() {
 
   function getExpenses() {
 
-    //config
-    //get current month
     const month = moment(Date.now()).format('MMMM')
     const year = moment(Date.now()).format('YYYY')
     setMonth(month)
     setYear(year)
-
-    //if i want to get everyone in a group, instead of searching for mine personally, i use
-    //a group where clause that somehow has a key connected to the group in question... that's one way
-    //another way is to have multiple where clauses in place for each user (that could be easier...)
-      //it seems that when you set it here, you should also set it up to exist in some Context state for current collection or something
 
     firebase.db
       .collection('expenses')
@@ -51,12 +44,11 @@ function Expenses() {
     getTotal(expenses)
   }
 
-  //haha, it's not very pretty, but it works!
   function getTotal(expenses) {
     let total = 0
     expenses.map((exp) => {
-      const num = parseFloat(exp.amount)
-      total += num
+      const expense = parseFloat(exp.amount)
+      total += expense
     })
 
     setTotal(total.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))

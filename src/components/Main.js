@@ -31,18 +31,7 @@ function Main() {
   }
 
   function handleSnapshot(snapshot) {
-    console.log(!snapshot.data())
-    if (!snapshot.data()) {
-      //nothing here... do nothing
-    } else {
-      setPreferences(snapshot.data().preferences)
-    }
-    //ok! so there are no preferences...  therefore, there needs to be a check like 'if none'
-    //but even better would be to init the user prefs when the user is created.
-
-    // console.log('in handle snapshot')
-    // console.log(snapshot.data().preferences)
-    // setPreferences(snapshot.data().preferences)
+    snapshot.data() && setPreferences(snapshot.data().preferences)
   }
 
   function updatePreferences(wrd) {
@@ -56,7 +45,6 @@ function Main() {
       <FirebaseContext.Provider value={{ user, preferences, updatePreferences, firebase }}>
         <Nav />
         <section className="content-area">
-
           <Route path="/grocery-list/" component={GroceryList} />
           <Route path="/recipe-database/" component={RecipeDatabase}/>
           <Route path="/week-planner/" component={WeekPlanner} />
