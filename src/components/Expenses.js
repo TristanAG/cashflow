@@ -55,16 +55,17 @@ function Expenses() {
   function getTotal(expenses) {
     let total = 0
     expenses.map((exp) => {
-      const num = parseInt(exp.amount)
+      const num = parseFloat(exp.amount)
       total += num
     })
-    setTotal(total.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))
+
+    setTotal(total.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))
   }
 
   return (
     <div className="expenses-list">
       <h3>🍂 {month} {year} Expenses</h3>
-      <p><b>amount spent:</b> <span className="has-text-success">${total}</span></p>
+      <p><b>amount spent:</b> <span className="has-text-success"><b>${total}</b></span></p>
       <div>
         {expenses.map((expense, index) => (
           <Expense key={expense.id} expense={expense} index={index + 1} />
