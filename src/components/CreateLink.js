@@ -58,7 +58,7 @@ function CreateLink(props) {
     <div>
       <div className="columns">
         <div className="column">
-          <h3 className="has-text-grey-light">Add Expense</h3>
+          <h3 className="has-text-grey">Add Expense</h3>
           {/* <h4 className="has-text-info">{moment(Date.now()).format('dddd')}</h4> */}
           {preferences.fact}
         </div>
@@ -105,12 +105,20 @@ function CreateLink(props) {
                       placeholder="How much was the expense?"
                       autoComplete="off"
                       type="text"
-                      className="input"
+                      // className="input is-danger"
+                      className={errors.amount ? 'input is-danger' : 'input'}
                       // className={errors.description && 'has-text-danger input'}
                     />
                   </div>
+                  {errors.amount &&
+                    <p className="help is-danger">
+                      <span className="icon has-text-danger">
+                        <i className="fas fa-ban"></i>
+                      </span>
+                      {errors.amount}
+                    </p>}
                 </div>
-                {errors.amount && <p className="has-text-danger">{errors.amount}</p>}
+
 
                 {/* payment method should be a drop down or a radio button maybe  */}
 

@@ -7,7 +7,7 @@ function Nav() {
   const [preferences, setPreferences] = React.useState({})
 
   return (
-    <nav className="navbar container" role="navigation" aria-label="main navigation">
+    <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/" className="navbar-item">
           <h3 className="has-text-grey">💵 cashflow.cool</h3>

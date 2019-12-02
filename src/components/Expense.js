@@ -18,7 +18,7 @@ function Expense({ expense, index }) {
   return (
     <div className="card">
       <p>
-        <span className="has-text-success"><b>${expense.amount}</b></span> | {expense.description} | {expense.category}
+        <span className="has-text-success"><b>${expense.amount}</b></span> | {expense.description} | <span class="tag is-light">{expense.category}</span>
       </p>
       <p>{expense.business} | {expense.paymentMethod} | {expense.postedBy.name}</p>
       {postedByAuthUser && <span className="has-text-danger has-text-right" onClick={handleDeleteExpense}>delete</span>}

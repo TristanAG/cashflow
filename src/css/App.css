@@ -1,5 +1,6 @@
 .navbar {
-  margin-bottom: 30px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid lightgray;
 }
 
 .nav-link {
@@ -7,12 +8,24 @@
 
 }
 
+/* .is-primary {
+  background-color: #F7CB00 !important;
+} */
+
 .section {
   padding: 1em;
 }
 
 .logo {
   padding-left: 14px;
+}
+
+/* .control {
+  margin-bottom: 22px;
+} */
+
+.field {
+  min-height: 44px;
 }
 
 .recipe-link:hover {

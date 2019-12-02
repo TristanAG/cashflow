@@ -20,7 +20,7 @@ function Expenses() {
 
     const month = moment(Date.now()).format('MMMM')
     const year = moment(Date.now()).format('YYYY')
-    
+
     setMonth(month)
     setYear(year)
 
@@ -57,7 +57,7 @@ function Expenses() {
 
   return (
     <div className="expenses-list">
-      <h3>🍂 {month} {year} Expenses</h3>
+      <h3 className="has-text-grey">❄️ {month} {year} Expenses</h3>
       <p><b>amount spent:</b> <span className="has-text-success"><b>${total}</b></span></p>
       <div>
         {expenses.map((expense, index) => (
