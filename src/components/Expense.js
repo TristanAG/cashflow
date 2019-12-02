@@ -27,6 +27,9 @@ function Expense({ expense, index }) {
     <div className="card">
       <div class="columns">
         <div class="column is-one-fifth">
+          <span className="icon has-text-warning">
+            <i class="fas fa-spinner"></i>
+          </span>
           <p><b className="has-text-success">${expense.amount}</b></p>
           {/* <p> {expense.description}</p> */}
         </div>

@@ -116,6 +116,8 @@ function CreateLink(props) {
                         <i className="fas fa-ban"></i>
                       </span>
                       {errors.amount}
+
+                      
                     </p>}
                 </div>
 

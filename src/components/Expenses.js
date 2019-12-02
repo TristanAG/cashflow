@@ -57,7 +57,7 @@ function Expenses() {
 
   return (
     <div className="expenses-list">
-      <h3 className="has-text-grey">❄️ {month} {year}</h3>
+      <h3 className="has-text-grey">❄️🎅 {month} {year}</h3>
       <p>{month} total spending: <span className="has-text-success"><b>${total}</b></span></p>
       <div>
         {expenses.map((expense, index) => (
