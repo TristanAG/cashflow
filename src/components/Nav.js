@@ -35,8 +35,8 @@ function Nav() {
           <div className="navbar-item">
             <div className="buttons">
               {user
-                ? <div onClick={() => firebase.logout()} className="button is-primary">Log out</div>
-                : <Link to="/login/" className="button is-primary">Log in</Link>
+                ? <div onClick={() => firebase.logout()} className="button">Log out</div>
+                : <Link to="/login/" className="button">Log in</Link>
               }
             </div>
           </div>

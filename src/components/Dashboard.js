@@ -5,12 +5,19 @@ import { FirebaseContext } from '../firebase'
 
 function Dashboard() {
   const INITIAL_STATE = {
-    fact: "...hmm?"
+    fact: "...hmm?",
+    categories: [
+      'Food',
+      'Gas',
+      'Videogames'
+    ]
+
   }
 
   const { user, preferences, updatePreferences, firebase } = React.useContext(FirebaseContext)
   const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validatePreferences, handleUpdatePreferences)
   const [userPreferences, setUserPreferences] = React.useState({})
+  const [newCategory, setNewCategory] = React.useState('')
 
   React.useEffect(() => {
     if (user) {
@@ -27,7 +34,7 @@ function Dashboard() {
   function handleUpdatePreferences() {
     alert('hey!')
 
-    const { fact } = values
+    const { fact, categories } = values
 
     const preferences = {
       fact: 'now im cloud firestore riiiiiick!'
@@ -56,6 +63,25 @@ function Dashboard() {
               <div className="content">
                 {preferences.fact}
                 <form onSubmit={handleSubmit}>
+
+
+                    <ul>
+                      {values.categories.map(category => (
+                        <li>{category} <a class="delete is-small"></a></li>
+                      ))}
+                      {/* <li>cat 1 <a class="delete"></a></li>
+                      <li>cat 2 <a class="delete"></a></li>
+                      <li>cat 3 <a class="delete"></a></li> */}
+                    </ul>
+                  <div className="field">
+
+                  </div>
+
+                  <button class="button">+ New Category</button>
+
+                  <br />
+                  <br />
+                  <br />
 
                   <div className="field">
                     <label className="label">Fact</label>
