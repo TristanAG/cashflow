@@ -4,6 +4,12 @@ import 'firebase/firestore'
 
 import firebaseConfig from './config'
 
+const DEFAULT_CATEGORIES = [
+  'Groceries',
+  'Videogames',
+  'Rent'
+]
+
 class Firebase {
   constructor() {
     app.initializeApp(firebaseConfig);
@@ -36,8 +42,18 @@ class Firebase {
   // }
 
   setUserPrefs(user) {
-    console.log('in set user prefs')
+    console.log('in set user prefs 1')
     console.log(user.user.uid)
+    console.log('in set user prefs 2')
+    console.log(user.uid)
+
+    // const preferences = {
+    //   categories: DEFAULT_CATEGORIES
+    // }
+    //
+    // firebase.db.collection('users').doc(user.uid).set({
+    //   preferences
+    // })
   }
 
   async login(email, password) {

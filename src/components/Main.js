@@ -35,7 +35,7 @@ function Main() {
   }
 
   function updatePreferences(wrd) {
-    console.log('in updatePreferences')
+    console.log('in updatePreferences Main')
     console.log(wrd)
     setPreferences(wrd)
   }

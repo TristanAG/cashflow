@@ -28,6 +28,7 @@ function useFormValidation(initialState, validate, authenticate) {
   //that's pretty cool!
   function handleChange(event) {
     event.persist()
+    console.log(event)
     setValues(previousValues => ({
       ...previousValues,
       [event.target.name]: event.target.value,
@@ -41,7 +42,8 @@ function useFormValidation(initialState, validate, authenticate) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    console.log(event.target.values)
+    // console.log(event.target.values)
+    console.log('in handle submit')
     const validationErrors = validate(values)
     setErrors(validationErrors)
     setSubmitting(true)

@@ -10,7 +10,8 @@ function Dashboard() {
       'Food',
       'Gas',
       'Videogames'
-    ]
+    ],
+    newCategory: 'meee'
 
   }
 
@@ -32,12 +33,14 @@ function Dashboard() {
   }
 
   function handleUpdatePreferences() {
-    alert('hey!')
+    alert('in handleUpdatePreferences!')
 
-    const { fact, categories } = values
+    const { categories, newCategory } = values
 
     const preferences = {
-      fact: 'now im cloud firestore riiiiiick!'
+      // newCategory: 'now im cloud firestore riiiiiick!'
+      newCategory: categories.push(newCategory)
+      // categories1: categories[1]
     }
 
     firebase.db.collection('users').doc(user.uid).set({
@@ -48,9 +51,7 @@ function Dashboard() {
 
   }
 
-  function updateContext() {
 
-  }
 
   return (
     <div className="Home section">
@@ -61,36 +62,25 @@ function Dashboard() {
           <div className="columns">
             <div className="column is-one-third">
               <div className="content">
-                {preferences.fact}
+                {preferences.newCategory}
                 <form onSubmit={handleSubmit}>
 
-
+                  <div className="category-list">
                     <ul>
                       {values.categories.map(category => (
-                        <li>{category} <a class="delete is-small"></a></li>
+                        <li key={category}>{category} <a className="delete is-small"></a></li>
                       ))}
-                      {/* <li>cat 1 <a class="delete"></a></li>
-                      <li>cat 2 <a class="delete"></a></li>
-                      <li>cat 3 <a class="delete"></a></li> */}
                     </ul>
-                  <div className="field">
-
                   </div>
 
-                  <button class="button">+ New Category</button>
-
-                  <br />
-                  <br />
-                  <br />
-
                   <div className="field">
-                    <label className="label">Fact</label>
+                    <label className="label">New Category</label>
                     <div className="control">
                       <input
-                        name="fact"
+                        name="newCategory"
                         onChange={handleChange}
-                        value={values.fact}
-                        placeholder="Just a fact"
+                        value={values.newCategory}
+                        placeholder="add new category"
                         autoComplete="off"
                         type="text"
                         // className={errors.url && 'has-text-danger'}
@@ -99,7 +89,7 @@ function Dashboard() {
                       {/* {errors.fact && <p className="has-text-danger">{errors.fact}</p>} */}
                     </div>
                   </div>
-                  <button className="button full-width" type="submit">Update Preferences</button>
+                  <button className="button full-width" type="submit">Update Categories</button>
                 </form>
               </div>
             </div>
