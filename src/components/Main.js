@@ -17,7 +17,7 @@ import useAuth from './auth/useAuth'
 import firebase, { FirebaseContext } from '../firebase'
 
 function Main() {
-  const [preferences, setPreferences] = React.useState({})
+  const [preferences, setPreferences] = React.useState([])
   const user = useAuth()
 
   React.useEffect(() => {
@@ -31,7 +31,7 @@ function Main() {
   }
 
   function handleSnapshot(snapshot) {
-    snapshot.data() && setPreferences(snapshot.data().preferences)
+    setPreferences(snapshot.data().categories)
   }
 
   function updatePreferences(wrd) {

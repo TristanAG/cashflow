@@ -60,7 +60,7 @@ function CreateLink(props) {
         <div className="column">
           <h3 className="has-text-grey">Add Expense</h3>
           {/* <h4 className="has-text-info">{moment(Date.now()).format('dddd')}</h4> */}
-          {preferences.fact}
+          {/* {preferences.fact} */}
         </div>
       </div>
 
@@ -80,15 +80,9 @@ function CreateLink(props) {
                         name="category"
                       >
                         <option>Category</option>
-                        <option>🥕 Groceries</option>
-                        <option>🥡 Eating Out</option>
-                        <option>🍻 Drinks</option>
-                        <option>🎸 Music</option>
-                        <option>🎮 Videogames</option>
-                        <option>⚕️ Medical</option>
-                        <option>🐈 Animals</option>
-                        <option>🎁 Gifts</option>
-                        <option>💭 Other</option>
+                        {preferences && preferences.map(pref => (
+                          <option key={pref}>{pref}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -117,7 +111,7 @@ function CreateLink(props) {
                       </span>
                       {errors.amount}
 
-                      
+
                     </p>}
                 </div>
 

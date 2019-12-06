@@ -17,19 +17,28 @@ function Dashboard() {
 
   const { user, preferences, updatePreferences, firebase } = React.useContext(FirebaseContext)
   const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validatePreferences, handleUpdatePreferences)
-  const [userPreferences, setUserPreferences] = React.useState({})
+  const [userPreferences, setUserPreferences] = React.useState([])
   const [newCategory, setNewCategory] = React.useState('')
 
   React.useEffect(() => {
     if (user) {
       const unsubscribe = initPreferences()
-
     }
   }, [user])
 
   function initPreferences() {
-    setUserPreferences(preferences)
-    // const { category, amount, business, paymentMethod, description } = values
+    //ah ok, so again, these preferences are coming from context ... at least i think that's what's happening
+    //setUserPreferences will set the state ... but these are coming from the categories in initial state.... hmm
+
+    //so it odesn't like me setting that here... i can ... well, i should already have this data in context theoretically at this opint.... so i can
+    //well, what should i do?
+
+
+    // setUserPreferences('fart', 'balls', 'big tits')
+
+    //ok so deactivating the function proves that this actually does nothing lol. So what does that mean for me?
+    console.log(preferences)
+
   }
 
   function handleUpdatePreferences() {
@@ -62,15 +71,15 @@ function Dashboard() {
           <div className="columns">
             <div className="column is-one-third">
               <div className="content">
-                {preferences.newCategory}
+                {/* {preferences.newCategory} */}
                 <form onSubmit={handleSubmit}>
 
                   <div className="category-list">
-                    <ul>
-                      {values.categories.map(category => (
+                    {/* <ul>
+                      {preferences.categories.map(category => (
                         <li key={category}>{category} <a className="delete is-small"></a></li>
                       ))}
-                    </ul>
+                    </ul> */}
                   </div>
 
                   <div className="field">
