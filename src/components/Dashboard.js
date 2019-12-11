@@ -27,36 +27,28 @@ function Dashboard() {
   }, [user])
 
   function initPreferences() {
-    //ah ok, so again, these preferences are coming from context ... at least i think that's what's happening
-    //setUserPreferences will set the state ... but these are coming from the categories in initial state.... hmm
 
-    //so it odesn't like me setting that here... i can ... well, i should already have this data in context theoretically at this opint.... so i can
-    //well, what should i do?
-
-
-    // setUserPreferences('fart', 'balls', 'big tits')
-
-    //ok so deactivating the function proves that this actually does nothing lol. So what does that mean for me?
     console.log(preferences)
 
   }
 
   function handleUpdatePreferences() {
-    alert('in handleUpdatePreferences!')
 
-    const { categories, newCategory } = values
-
-    const preferences = {
-      // newCategory: 'now im cloud firestore riiiiiick!'
-      newCategory: categories.push(newCategory)
-      // categories1: categories[1]
-    }
-
-    firebase.db.collection('users').doc(user.uid).set({
-      preferences
-    })
-
-    updatePreferences(preferences)
+    //
+    const { newCategory } = values
+    //
+    // const preferences = {
+    //   // newCategory: 'now im cloud firestore riiiiiick!'
+    //   newCategory: categories.push(newCategory)
+    //   // categories1: categories[1]
+    // }
+    //
+    // firebase.db.collection('users').doc(user.uid).set({
+    //   preferences
+    // })
+    //
+    // alert(values.newCategory)
+    updatePreferences(values.newCategory)
 
   }
 
@@ -75,11 +67,11 @@ function Dashboard() {
                 <form onSubmit={handleSubmit}>
 
                   <div className="category-list">
-                    {/* <ul>
-                      {preferences.categories.map(category => (
-                        <li key={category}>{category} <a className="delete is-small"></a></li>
+                    <ul>
+                      {preferences.map(pref => (
+                        <li key={pref}>{pref} <a className="delete is-small"></a></li>
                       ))}
-                    </ul> */}
+                    </ul>
                   </div>
 
                   <div className="field">

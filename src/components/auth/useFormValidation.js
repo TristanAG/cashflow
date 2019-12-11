@@ -28,7 +28,6 @@ function useFormValidation(initialState, validate, authenticate) {
   //that's pretty cool!
   function handleChange(event) {
     event.persist()
-    console.log(event)
     setValues(previousValues => ({
       ...previousValues,
       [event.target.name]: event.target.value,
@@ -51,7 +50,5 @@ function useFormValidation(initialState, validate, authenticate) {
 
   return { handleChange, handleBlur, handleSubmit, values, errors, isSubmitting }
 }
-
-
 
 export default useFormValidation
