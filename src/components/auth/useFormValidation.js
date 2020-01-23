@@ -2,7 +2,8 @@ import React from 'react'
 
 //custom hook
 
-function useFormValidation(initialState, validate, authenticate) {
+function useFormValidation(initialState, validate, authenticate, preferences) {
+  //values set here on setValues using the initial state from dashboard component
   const [values, setValues] = React.useState(initialState)
   const [errors, setErrors] = React.useState({})
   const [isSubmitting, setSubmitting] = React.useState(false)
@@ -41,11 +42,15 @@ function useFormValidation(initialState, validate, authenticate) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    // console.log(event.target.values)
     console.log('in handle submit')
-    const validationErrors = validate(values)
+    console.log(event.target.values)
+
+    const validationErrors = validate(values, preferences)
     setErrors(validationErrors)
     setSubmitting(true)
+    //so it seems like right after this function runs, that's when you would clear the data, right?
+    // setValues('')
+
   }
 
   return { handleChange, handleBlur, handleSubmit, values, errors, isSubmitting }

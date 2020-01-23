@@ -39,9 +39,10 @@ function Main() {
     // alert(wrd)
 
     //so i suppose what shall happen here is that update preferences will send this data off to firebase, then it will update state (which will in turn update context)
-    preferences.push(wrd)
-    console.log('check this')
-    console.log(preferences)
+
+    // preferences.push(wrd)
+    // console.log('check this')
+    // console.log(preferences)
 
     // setPreferences(wrd)
   }
