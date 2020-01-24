@@ -1,9 +1,9 @@
 export default function validatePreferences(values, preferences) {
   let errors = {}
 
-  const categoryIsAlreadyThere = (preferences.indexOf(values.newCategory) > -1)
+  const categoryAlreadyExists = (preferences.indexOf(values.newCategory) > -1)
 
-  if (categoryIsAlreadyThere) {
+  if (categoryAlreadyExists) {
     errors.category = "This category is already in the list... "
   }
 

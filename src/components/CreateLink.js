@@ -19,7 +19,7 @@ const INITIAL_STATE = {
 function CreateLink(props) {
   const time = Date.now()
   const { firebase, preferences, user } = React.useContext(FirebaseContext)
-  const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense)
+  const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense, )
 
   const [amount, setAmount] = React.useState("")
 
@@ -86,6 +86,7 @@ function CreateLink(props) {
                       </select>
                     </div>
                   </div>
+                  {errors.category && <p className="has-text-danger">{errors.category}</p>}
                 </div>
 
                 <div className="field">

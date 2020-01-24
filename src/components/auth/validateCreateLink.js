@@ -13,6 +13,8 @@ export default function validateCreateLink(values) {
     // } else if (!/^(ftp|http|https):\/\/[^ "]+$/.test(values.url)) {
     //   errors.url = "URL must be valid";
     // }
+  console.log('values . category')
+  console.log(values.category)
 
   //amount errors
   if (values.amount) {
@@ -23,6 +25,10 @@ export default function validateCreateLink(values) {
 
   if (!values.amount) {
     errors.amount = "Please enter expense amount"
+  }
+
+  if (!values.category || values.category === 'Category') {
+    errors.category = "Please select a category first!"
   }
 
   return errors;
