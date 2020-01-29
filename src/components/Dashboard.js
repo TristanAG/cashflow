@@ -33,6 +33,16 @@ function Dashboard() {
     values.newCategory = ''
   }
 
+  function handleDeleteClick(pref) {
+    const res = preferences.indexOf(pref)
+    preferences.splice(res, 1)
+    if(window.confirm('you sure you want to delete this category?')){
+      firebase.db.collection('users').doc(user.uid).set({
+        categories: preferences
+      })
+    }
+  }
+
   return (
     <div className="Home section">
       <div className="container">
@@ -42,12 +52,11 @@ function Dashboard() {
         <div className="columns">
           <div className="column is-one-third">
             <div className="content">
-                {/* {preferences.newCategory} */}
               <form onSubmit={handleSubmit}>
                 <div className="category-list">
                   <ul>
                     {preferences.map(pref => (
-                      <li key={pref}>{pref} <a className="delete is-small"></a></li>
+                      <li key={pref} onClick={() => { handleDeleteClick(pref) }}>{pref} <a className="delete is-small"></a></li>
                     ))}
                   </ul>
                 </div>
@@ -75,6 +84,8 @@ function Dashboard() {
           <div className="column">
             <div className="content">
               {/* <Expenses /> */}
+              <small className="has-text-primary">why am i here? ¯\_(ツ)_/¯<br/>probably should refactor the template or put something of value here<br />what else goes on a dashboard?
+              <br/>category distribution quick look?</small>
             </div>
           </div>
         </div>

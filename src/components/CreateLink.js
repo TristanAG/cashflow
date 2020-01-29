@@ -23,6 +23,9 @@ function CreateLink(props) {
 
   const [amount, setAmount] = React.useState("")
 
+  // alert('hi')
+  // values.amount = 19
+
   function handleCreateExpense() {
     if(!user) {
       props.history.push('/login')
@@ -50,8 +53,11 @@ function CreateLink(props) {
       }
 
       firebase.db.collection('expenses').add(expense)
-      // props.history.push("/")
     }
+    values.amount = ''
+    values.business = ''
+    values.description = ''
+    values.paymentMethod = 'Debit Card'
   }
 
   return (
@@ -59,8 +65,6 @@ function CreateLink(props) {
       <div className="columns">
         <div className="column">
           <h3 className="has-text-grey">Add Expense</h3>
-          {/* <h4 className="has-text-info">{moment(Date.now()).format('dddd')}</h4> */}
-          {/* {preferences.fact} */}
         </div>
       </div>
 
@@ -111,13 +115,8 @@ function CreateLink(props) {
                         <i className="fas fa-ban"></i>
                       </span>
                       {errors.amount}
-
-
                     </p>}
                 </div>
-
-
-                {/* payment method should be a drop down or a radio button maybe  */}
 
                 <div className="field">
                   <label className="label">Business</label>
