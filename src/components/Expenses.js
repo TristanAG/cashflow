@@ -1,6 +1,7 @@
 import React from 'react'
 import FirebaseContext from '../firebase/context'
 import Expense from './Expense'
+import ExpenseList from './ExpenseList'
 import moment from 'moment'
 
 function Expenses() {
@@ -58,12 +59,8 @@ function Expenses() {
   return (
     <div className="expenses-list">
       <h3 className="has-text-grey">{month} {year}</h3>
-      <p>{month} total spending: <span className="has-text-success"><b>${total}</b></span></p>
-      <div>
-        {expenses.map((expense, index) => (
-          <Expense key={expense.id} expense={expense} index={index + 1} />
-        ))}
-      </div>
+      <p>{month} total spending: <span className="has-text-success"><b>${total}</b></span></p>  
+      <ExpenseList expenses={expenses}/>
     </div>
   )
 }
