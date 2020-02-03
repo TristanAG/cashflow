@@ -1,6 +1,6 @@
 import React from 'react'
-import LinkList from './LinkList'
-import CreateLink from './CreateLink'
+import ExpenseList from './ExpenseList'
+import AddExpense from './AddExpense'
 import Expenses from './Expenses'
 import FirebaseContext from '../firebase/context'
 
@@ -14,7 +14,7 @@ function Home() {
           <div className="columns">
             <div className="column is-one-half form-area">
               <div className="content">
-                <CreateLink />
+                <AddExpense />
               </div>
             </div>
             <div className="column">

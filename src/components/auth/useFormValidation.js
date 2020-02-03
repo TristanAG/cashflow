@@ -1,7 +1,5 @@
 import React from 'react'
 
-//custom hook
-
 function useFormValidation(initialState, validate, authenticate, preferences) {
   //values set here on setValues using the initial state from dashboard component
   const [values, setValues] = React.useState(initialState)
@@ -24,9 +22,6 @@ function useFormValidation(initialState, validate, authenticate, preferences) {
     }
   }, [errors])
 
-
-  //alright so it looks like we are just reducing the number of times we would handleChange and keeping it in the reusable hook
-  //that's pretty cool!
   function handleChange(event) {
     event.persist()
     setValues(previousValues => ({
@@ -48,9 +43,6 @@ function useFormValidation(initialState, validate, authenticate, preferences) {
     const validationErrors = validate(values, preferences)
     setErrors(validationErrors)
     setSubmitting(true)
-    //so it seems like right after this function runs, that's when you would clear the data, right?
-    // setValues('')
-
   }
 
   return { handleChange, handleBlur, handleSubmit, values, errors, isSubmitting }

@@ -2,19 +2,14 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
 import '../css/App.css'
+import firebase, { FirebaseContext } from '../firebase'
+import useAuth from './auth/useAuth'
 
 import Nav from './Nav'
 import Home from './Home'
-import GroceryList from './GroceryList'
-import RecipeDatabase from './RecipeDatabase'
-import WeekPlanner from './WeekPlanner'
-import MyRecipes from './MyRecipes'
+import Dashboard from './Dashboard'
 import Login from './auth/Login'
 import ForgotPassword from './auth/ForgotPassword'
-import Dashboard from './Dashboard'
-
-import useAuth from './auth/useAuth'
-import firebase, { FirebaseContext } from '../firebase'
 
 function Main() {
   const [preferences, setPreferences] = React.useState([])
@@ -35,16 +30,8 @@ function Main() {
   }
 
   function updatePreferences(wrd) {
+    //do i still need to be here?
     // alert('in updatePreferences Main')
-    // alert(wrd)
-
-    //so i suppose what shall happen here is that update preferences will send this data off to firebase, then it will update state (which will in turn update context)
-
-    // preferences.push(wrd)
-    // console.log('check this')
-    // console.log(preferences)
-
-    // setPreferences(wrd)
   }
 
   return (
@@ -53,13 +40,7 @@ function Main() {
         <Nav />
         <section className="content-area">
           {user &&
-            <>
-              <Route path="/grocery-list/" component={GroceryList} />
-              <Route path="/recipe-database/" component={RecipeDatabase}/>
-              <Route path="/week-planner/" component={WeekPlanner} />
-              <Route path="/my-recipes/" component={MyRecipes} />
-              <Route path="/dashboard/" component={Dashboard} />
-            </>
+            <><Route path="/dashboard/" component={Dashboard} /></>
           }
           <Route path="/" exact component={Home} />
           <Route path="/login/" component={Login} />

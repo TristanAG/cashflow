@@ -8,7 +8,6 @@ function Dashboard() {
   const { user, preferences, updatePreferences, firebase } = React.useContext(FirebaseContext)
 
   const INITIAL_STATE = {
-    fact: "...hmm?",
     categories: [
       'Food',
       'Gas',

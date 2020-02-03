@@ -13,18 +13,12 @@ const INITIAL_STATE = {
   description: ""
 }
 
-
-
-
-function CreateLink(props) {
+function AddExpense(props) {
   const time = Date.now()
   const { firebase, preferences, user } = React.useContext(FirebaseContext)
   const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense, )
 
   const [amount, setAmount] = React.useState("")
-
-  // alert('hi')
-  // values.amount = 19
 
   function handleCreateExpense() {
     if(!user) {
@@ -32,7 +26,6 @@ function CreateLink(props) {
     } else {
       const { category, amount, business, paymentMethod, description } = values
 
-      //convert amount to number here
       const amountNum = parseFloat(amount, 10)
 
       const expense = {
@@ -175,7 +168,6 @@ function CreateLink(props) {
                 </div>
                 <button className="button full-width" type="submit">Add Expense</button>
               </form>
-
             </div>
           </div>
         </div>
@@ -188,4 +180,4 @@ function CreateLink(props) {
   )
 }
 
-export default CreateLink
+export default AddExpense
