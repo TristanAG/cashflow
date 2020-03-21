@@ -23,15 +23,11 @@ function Expense({ expense, index }) {
       <div className="columns">
         <div className="column is-one-fifth">
           <p><b className="has-text-success">${expense.amount}</b></p>
-        </div>
-
-        <div className="column is-two-fifths">
-          <p> {expense.description}</p>
-        </div>
-        <div className="column">
           <span className="tag is-light">{expense.category}</span>
         </div>
-
+        <div className="column is-three-fifths">
+          <p> {expense.description}</p>
+        </div>
         <div className="column has-text-right">
           <button className="delete" onClick={handleDeleteExpense}></button>
         </div>

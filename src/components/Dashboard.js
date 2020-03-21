@@ -46,7 +46,9 @@ function Dashboard() {
   return (
     <div className="Home section">
       <div className="container">
-        <h3 className="has-text-grey-light">Dashboard 📈</h3>
+        <div className="content">
+          <h3 className="has-text-grey-light">Dashboard 📈</h3>
+        </div>
       </div>
       <div className="container">
         <div className="columns">

@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 
 
 
-function CreateLink(props) {
+function CreateExpense(props) {
   const time = Date.now()
   const { firebase, preferences, user } = React.useContext(FirebaseContext)
   const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense, )
@@ -188,4 +188,4 @@ function CreateLink(props) {
   )
 }
 
-export default CreateLink
+export default CreateExpense

@@ -5,10 +5,6 @@ import '../css/App.css'
 
 import Nav from './Nav'
 import Home from './Home'
-import GroceryList from './GroceryList'
-import RecipeDatabase from './RecipeDatabase'
-import WeekPlanner from './WeekPlanner'
-import MyRecipes from './MyRecipes'
 import Login from './auth/Login'
 import ForgotPassword from './auth/ForgotPassword'
 import Dashboard from './Dashboard'
@@ -54,10 +50,6 @@ function Main() {
         <section className="content-area">
           {user &&
             <>
-              <Route path="/grocery-list/" component={GroceryList} />
-              <Route path="/recipe-database/" component={RecipeDatabase}/>
-              <Route path="/week-planner/" component={WeekPlanner} />
-              <Route path="/my-recipes/" component={MyRecipes} />
               <Route path="/dashboard/" component={Dashboard} />
             </>
           }
