@@ -18,7 +18,7 @@ function Expenses() {
     if (user) {
       getExpenses(filter)
     }
-  }, [user])
+  }, [user, expenses])
 
   function getExpenses(filter) {
 
@@ -31,7 +31,6 @@ function Expenses() {
 
     switch (filter) {
       case 'month-filter':
-        alert('month-filter')
         firebase.db
           .collection('expenses')
           .where("postedBy.id", "==", user.uid)

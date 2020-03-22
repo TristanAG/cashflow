@@ -16,7 +16,7 @@ const INITIAL_STATE = {
 function CreateExpense(props) {
 
   const { firebase, preferences, user } = React.useContext(FirebaseContext)
-  const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense, )
+  const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense)
 
   function handleCreateExpense() {
     if(!user) {
@@ -44,6 +44,7 @@ function CreateExpense(props) {
       }
 
       firebase.db.collection('expenses').add(expense)
+      console.log('i just added an expense')
     }
     values.amount = ''
     values.business = ''
