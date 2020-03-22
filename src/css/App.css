@@ -63,3 +63,17 @@
 .form-area {
   padding-right: 80px;
 }
+
+.filter {
+  margin-bottom: 14px;
+  margin-top: -8px;
+}
+
+.filter-tag {
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.filter-tag:hover {
+  cursor: pointer;
+}
