@@ -16,25 +16,49 @@ function Expenses() {
 
   React.useEffect(() => {
     if (user) {
-      getExpenses()
+      getExpenses(filter)
     }
   }, [user])
 
-  function getExpenses() {
+  function getExpenses(filter) {
 
     const month = moment(Date.now()).format('MMMM')
     const year = moment(Date.now()).format('YYYY')
+    const day = moment(Date.now()).format('D')
 
     setMonth(month)
     setYear(year)
 
-    firebase.db
-      .collection('expenses')
-      .where("postedBy.id", "==", user.uid)
-      .where("monthCreated", "==", month)
-      .where("yearCreated", "==", year)
-      .orderBy('created', 'desc')
-      .onSnapshot(handleSnapshot)
+    switch (filter) {
+      case 'month-filter':
+        alert('month-filter')
+        firebase.db
+          .collection('expenses')
+          .where("postedBy.id", "==", user.uid)
+          .where("monthCreated", "==", month)
+          .where("yearCreated", "==", year)
+          .orderBy('created', 'desc')
+          .onSnapshot(handleSnapshot)
+        break
+
+      case 'week-filter':
+        alert('week filter')
+        break
+
+      case 'day-filter':
+        firebase.db
+          .collection('expenses')
+          .where("postedBy.id", "==", user.uid)
+          .where("monthCreated", "==", month)
+          .where("dayCreated", "==", day)
+          .where("yearCreated", "==", year)
+          .orderBy('created', 'desc')
+          .onSnapshot(handleSnapshot)
+        // alert(day)
+        break;
+    }
+
+
   }
 
   function handleSnapshot(snapshot) {
@@ -62,6 +86,7 @@ function Expenses() {
     //first update the state so you change filter to whatever the id is
     // console.log(e.target.id)
     setFilter(e.target.id)
+    getExpenses(e.target.id)
   }
 
   return (
