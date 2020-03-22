@@ -13,25 +13,16 @@ const INITIAL_STATE = {
   description: ""
 }
 
-
-
-
 function CreateExpense(props) {
-  const time = Date.now()
+
   const { firebase, preferences, user } = React.useContext(FirebaseContext)
   const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validateCreateLink, handleCreateExpense, )
-
-  const [amount, setAmount] = React.useState("")
-
-  // alert('hi')
-  // values.amount = 19
 
   function handleCreateExpense() {
     if(!user) {
       props.history.push('/login')
     } else {
       const { category, amount, business, paymentMethod, description } = values
-
       //convert amount to number here
       const amountNum = parseFloat(amount, 10)
 

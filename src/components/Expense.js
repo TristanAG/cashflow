@@ -2,21 +2,14 @@ import React from 'react'
 import FirebaseContext from '../firebase/context'
 
 function Expense({ expense, index }) {
-  const { firebase, user } = React.useContext(FirebaseContext)
+  const { firebase } = React.useContext(FirebaseContext)
 
   function handleDeleteExpense() {
     if(window.confirm('you sure you want to delete this expense?')){
       const expenseRef = firebase.db.collection('expenses').doc(expense.id)
-      // expenseRef.delete().then(() => {
-      //   alert('bye bye 👋')
-      // }).catch(err => {
-      //   console.error('error deleting expense', err)
-      // })
       expenseRef.delete().catch(err => console.error('error deleting expense', err))
     }
   }
-
-  const postedByAuthUser = user && user.uid === expense.postedBy.id
 
   return (
     <div className="card">

@@ -18,13 +18,12 @@ function Main() {
 
   React.useEffect(() => {
     if (user) {
-      const unsubscribe = loadUserPreferences()
+      function loadUserPreferences() {
+        firebase.db.collection('users').doc(user.uid).onSnapshot(handleSnapshot)
+      }
+      loadUserPreferences()
     }
   }, [user])
-
-  function loadUserPreferences() {
-    firebase.db.collection('users').doc(user.uid).onSnapshot(handleSnapshot)
-  }
 
   function handleSnapshot(snapshot) {
     setPreferences(snapshot.data().categories)

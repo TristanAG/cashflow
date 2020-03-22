@@ -4,7 +4,7 @@ import { FirebaseContext } from '../firebase'
 
 function Nav() {
   const { user, firebase } = React.useContext(FirebaseContext)
-  const [preferences, setPreferences] = React.useState({})
+
   const [isActive, setIsActive] = React.useState(false)
 
   function closeNavOnMobile() {
@@ -15,10 +15,11 @@ function Nav() {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link to="/" className="navbar-item">
-          <h3 className="has-text-grey">💵 cashflow.cool</h3>
+          <h3 className="has-text-grey"><span role="img" aria-label="cash emoji">💵</span> cashflow.cool</h3>
         </Link>
 
-        <a
+        <div
+
           role="button"
           aria-label="menu"
           aria-expanded="false"
@@ -30,7 +31,7 @@ function Nav() {
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </div>
       </div>
 
       <div className={isActive ? 'navbar-menu is-active' : 'navbar-menu'} id="navMenu">

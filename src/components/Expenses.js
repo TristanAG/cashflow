@@ -12,44 +12,47 @@ function Expenses() {
 
   React.useEffect(() => {
     if (user) {
-      const unsubscribe = getExpenses()
+      function getExpenses() {
+
+        const month = moment(Date.now()).format('MMMM')
+        const year = moment(Date.now()).format('YYYY')
+
+        setMonth(month)
+        setYear(year)
+
+        firebase.db
+          .collection('expenses')
+          .where("postedBy.id", "==", user.uid)
+          .where("monthCreated", "==", month)
+          .where("yearCreated", "==", year)
+          // .where("category", "==", "🎮 Videogames")
+          .orderBy('created', 'desc')
+          .onSnapshot(handleSnapshot)
+      }
+
+      function handleSnapshot(snapshot) {
+        const expenses = snapshot.docs.map(doc => {
+          return { id: doc.id, ...doc.data() }
+        })
+        setExpenses(expenses)
+        getTotal(expenses)
+      }
+
+      getExpenses()
     }
-  }, [user])
+  }, [user, firebase.db])
 
-  function getExpenses() {
-
-    const month = moment(Date.now()).format('MMMM')
-    const year = moment(Date.now()).format('YYYY')
-
-    setMonth(month)
-    setYear(year)
-
-    firebase.db
-      .collection('expenses')
-      .where("postedBy.id", "==", user.uid)
-      .where("monthCreated", "==", month)
-      .where("yearCreated", "==", year)
-      .orderBy('created', 'desc')
-      .onSnapshot(handleSnapshot)
-  }
-
-  function formatNumber(num) {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-  }
-
-  function handleSnapshot(snapshot) {
-    const expenses = snapshot.docs.map(doc => {
-      return { id: doc.id, ...doc.data() }
-    })
-    setExpenses(expenses)
-    getTotal(expenses)
-  }
+  // function formatNumber(num) {
+  //   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  // }
 
   function getTotal(expenses) {
     let total = 0
     expenses.map((exp) => {
       const expense = parseFloat(exp.amount)
-      total += expense
+      return (
+        total += expense
+      )
     })
 
     setTotal(total.toFixed(2).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))
