@@ -11,7 +11,7 @@ function useFormValidation(initialState, validate, authenticate, preferences) {
   //useEffect hook is there to check if state has changed!
   //so ok, the callback seems to only run by watching the errors state it looks like
 
-  React.useEffect((isSubmitting, authenticate) => {
+  React.useEffect(() => {
     if(isSubmitting) {
       const noErrors = Object.keys(errors).length === 0
       if (noErrors) {
