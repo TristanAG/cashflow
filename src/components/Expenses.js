@@ -6,6 +6,7 @@ import moment from 'moment'
 function Expenses() {
   const { firebase, user } = React.useContext(FirebaseContext)
   const [expenses, setExpenses] = React.useState([])
+  const [defaultExpenses, setDefaultExpenses] = React.useState([])
   const [total, setTotal] = React.useState([])
   const [month, setMonth] = React.useState('')
   const [year, setYear] = React.useState('1999')
@@ -16,54 +17,32 @@ function Expenses() {
 
   React.useEffect(() => {
     if (user) {
-      getExpenses(filter)
+      getExpenses()
     }
-  }, [user, expenses])
+  }, [user])
 
   function getExpenses(filter) {
 
     const month = moment(Date.now()).format('MMMM')
     const year = moment(Date.now()).format('YYYY')
-    const day = moment(Date.now()).format('D')
 
     setMonth(month)
     setYear(year)
 
-    switch (filter) {
-      case 'month-filter':
-        firebase.db
-          .collection('expenses')
-          .where("postedBy.id", "==", user.uid)
-          .where("monthCreated", "==", month)
-          .where("yearCreated", "==", year)
-          .orderBy('created', 'desc')
-          .onSnapshot(handleSnapshot)
-        break
-
-      case 'week-filter':
-        alert('week filter')
-        break
-
-      case 'day-filter':
-        firebase.db
-          .collection('expenses')
-          .where("postedBy.id", "==", user.uid)
-          .where("monthCreated", "==", month)
-          .where("dayCreated", "==", day)
-          .where("yearCreated", "==", year)
-          .orderBy('created', 'desc')
-          .onSnapshot(handleSnapshot)
-        // alert(day)
-        break;
-    }
-
-
+    firebase.db
+      .collection('expenses')
+      .where("postedBy.id", "==", user.uid)
+      .where("monthCreated", "==", month)
+      .where("yearCreated", "==", year)
+      .orderBy('created', 'desc')
+      .onSnapshot(handleSnapshot)
   }
 
   function handleSnapshot(snapshot) {
     const expenses = snapshot.docs.map(doc => {
       return { id: doc.id, ...doc.data() }
     })
+    setDefaultExpenses(expenses)
     setExpenses(expenses)
     getTotal(expenses)
   }
@@ -81,11 +60,73 @@ function Expenses() {
   }
 
   function handleFilter(e) {
-    // e.target.classList.add('is-primary')
-    //first update the state so you change filter to whatever the id is
-    // console.log(e.target.id)
     setFilter(e.target.id)
-    getExpenses(e.target.id)
+    setFilterView(e.target.id)
+  }
+
+  function setFilterView(filter) {
+    const today = moment(Date.now()).format('D').toString()
+
+    switch (filter) {
+      case 'day-filter':
+        const todayExpenses = []
+        expenses.map(expense => {
+          if (expense.dayCreated === today) {
+            todayExpenses.push(expense)
+          }
+        })
+        setExpenses(todayExpenses)
+        break;
+
+      case 'week-filter':
+        const weekExpenses = []
+        let lowerLimit = 0
+        let upperLimit = 0
+
+        switch (moment().format('dddd')) {
+          case 'Sunday':
+            lowerLimit = today - 0
+            upperLimit = today + 6
+            break;
+          case 'Monday':
+            lowerLimit = today - 1
+            upperLimit = today + 5
+            break;
+          case 'Tuesday':
+            lowerLimit = today - 2
+            upperLimit = today + 4
+            break;
+          case 'Wednesday':
+            lowerLimit = today - 3
+            upperLimit = today + 3
+            break;
+          case 'Thursday':
+            lowerLimit = today - 4
+            upperLimit = today + 2
+            break;
+          case 'Friday':
+            lowerLimit = today - 5
+            upperLimit = today + 1
+            break;
+          case 'Saturday':
+            lowerLimit = today - 6
+            upperLimit = today + 0
+            break;
+        }
+
+        defaultExpenses.map(expense => {
+          if (expense.dayCreated >= lowerLimit && expense.dayCreated <= upperLimit) {
+            weekExpenses.push(expense)
+
+          }
+        })
+        setExpenses(weekExpenses)
+        break;
+
+      case 'month-filter':
+        setExpenses(defaultExpenses)
+        break;
+    }
   }
 
   return (
