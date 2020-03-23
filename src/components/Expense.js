@@ -3,16 +3,17 @@ import FirebaseContext from '../firebase/context'
 
 function Expense({ expense, index }) {
   const { firebase } = React.useContext(FirebaseContext)
+  const [isDeleting, setIsDeleting] = React.useState(false)
 
   function handleDeleteExpense() {
     if(window.confirm('you sure you want to delete this expense?')){
       const expenseRef = firebase.db.collection('expenses').doc(expense.id)
-      expenseRef.delete().catch(err => console.error('error deleting expense', err))
+      expenseRef.delete().then(setIsDeleting(true)).catch(err => console.error('error deleting expense', err))
     }
   }
 
   return (
-    <div className="card">
+    <div className={!isDeleting ? "card" : "card is-deleting"}>
       <div className="columns">
         <div className="column is-one-fifth">
           <p><b className="has-text-success">${expense.amount}</b></p>
@@ -22,7 +23,7 @@ function Expense({ expense, index }) {
           <p> {expense.description}</p>
         </div>
         <div className="column has-text-right">
-          <button className="delete" onClick={handleDeleteExpense}></button>
+          {!isDeleting && <button className="delete" onClick={handleDeleteExpense}></button>}
         </div>
       </div>
     </div>
