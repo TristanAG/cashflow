@@ -4,6 +4,7 @@ import Expense from './Expense'
 import moment from 'moment'
 
 function Expenses() {
+
   const { firebase, user } = React.useContext(FirebaseContext)
   const [expenses, setExpenses] = React.useState([])
   const [defaultExpenses, setDefaultExpenses] = React.useState([])
@@ -21,8 +22,11 @@ function Expenses() {
     }
   }, [user])
 
-  function getExpenses(filter) {
+  React.useEffect(() => {
+    setFilterView(filter)
+  }, [expenses.length])
 
+  function getExpenses(filter) {
     const month = moment(Date.now()).format('MMMM')
     const year = moment(Date.now()).format('YYYY')
 
