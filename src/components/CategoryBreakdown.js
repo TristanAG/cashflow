@@ -23,7 +23,7 @@ function CategoryBreakdown() {
     firebase.db
       .collection('expenses')
       .where("postedBy.id", "==", user.uid)
-      // .where("monthCreated", "==", month)
+      .where("monthCreated", "==", month)
       .where("yearCreated", "==", year)
       .orderBy("category")
       .orderBy('created', 'desc')
@@ -44,10 +44,8 @@ function CategoryBreakdown() {
     let index = 0
 
     defaultExpenses.map(exp => {
-      if (index === 0) {
-        combinedCategories.push(exp)
-        index++
-      }
+      console.log(exp)
+
 
       if (index > 0) {
         if (combinedCategories[index - 1].category === exp.category) {
@@ -56,6 +54,11 @@ function CategoryBreakdown() {
           combinedCategories.push(exp)
           index++
         }
+      }
+
+      if (index === 0) {
+        combinedCategories.push(exp)
+        index++
       }
     })
 
