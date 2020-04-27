@@ -41,39 +41,24 @@ function CategoryBreakdown() {
   function combineCategories(defaultExpenses) {
 
     const combinedCategories = []
-    let indexOffset = 0
+    let index = 0
 
-    defaultExpenses.map((exp, i) => {
-      if (indexOffset === 0) {
+    defaultExpenses.map(exp => {
+      if (index === 0) {
         combinedCategories.push(exp)
-
-        // console.log(combinedCategories[i].amount)
-        // combinedCategories[i].amount += 333
-        // console.log(combinedCategories[i].amount)
-        indexOffset++
+        index++
       }
 
-      if (indexOffset > 0) {
-
-        //you gotta stash the index somehow... don't let it increment
-        console.log(combinedCategories[indexOffset - 1].category)
-
-        if (combinedCategories[indexOffset - 1].category === exp.category) {
-          console.log('hit')
-          //do the add
-          console.log(combinedCategories[indexOffset - 1].amount)
-          combinedCategories[indexOffset - 1].amount += exp.amount
-          console.log(combinedCategories[indexOffset - 1].amount)
+      if (index > 0) {
+        if (combinedCategories[index - 1].category === exp.category) {
+          combinedCategories[index - 1].amount += exp.amount
         } else {
           combinedCategories.push(exp)
-          indexOffset++
+          index++
         }
-
-        // combinedCategories.push(exp)
       }
     })
 
-    // console.log(combinedCategories)
     setExpenses(combinedCategories)
   }
 
