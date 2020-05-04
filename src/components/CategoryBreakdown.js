@@ -8,6 +8,8 @@ function CategoryBreakdown() {
   const { user, firebase } = React.useContext(FirebaseContext)
   const [expenses, setExpenses] = React.useState([])
   const [combinedExpenses, setCombinedExpenses] = React.useState([])
+  const [month, setMonth] = React.useState(moment(Date.now()).format('MMMM'))
+  const [year, setYear] = React.useState(moment(Date.now()).format('YYYY'))
 
   React.useEffect(() => {
     if (user) {
@@ -36,44 +38,53 @@ function CategoryBreakdown() {
       return { id: doc.id, ...doc.data() }
     })
     combineCategories(defaultExpenses)
+    // setExpenses(defaultExpenses)
   }
 
   function combineCategories(defaultExpenses) {
-
     const combinedCategories = []
+
     let index = 0
-
     defaultExpenses.map(exp => {
-      console.log(exp)
-
-
-      if (index > 0) {
-        if (combinedCategories[index - 1].category === exp.category) {
-          combinedCategories[index - 1].amount += exp.amount
-        } else {
+      switch (index) {
+        case 0:
           combinedCategories.push(exp)
           index++
-        }
-      }
-
-      if (index === 0) {
-        combinedCategories.push(exp)
-        index++
+          break
+        default:
+          if (combinedCategories[index - 1].category === exp.category) {
+            combinedCategories[index - 1].amount += exp.amount
+          } else {
+            combinedCategories.push(exp)
+            index++
+          }
       }
     })
 
-    setExpenses(combinedCategories)
+    //now sort them
+    var sortedCategories = combinedCategories.sort(function (x, y) {
+      return x.amount - y.amount;
+    });
+
+    console.table(sortedCategories);
+
+    setExpenses(sortedCategories)
   }
 
   return (
     <div>
       <p className="has-text-primary">Category Breakdown</p>
+        <p>{month} {year} total amount spent per category</p>
         <table className="table is-striped is-full-width">
           <tbody>
+            <tr>
+              <th>Category</th>
+              <th>Total Spent</th>
+            </tr>
 
             {expenses.map((expense, index) => (
-              // <Expense key={expense.id} expense={expense} index={index + 1} />
-              <tr>
+              <tr key={index}>
+                {console.log(expense)}
                 <td>{expense.category}</td>
                 <td>{expense.amount}</td>
               </tr>
