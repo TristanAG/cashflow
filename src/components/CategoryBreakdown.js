@@ -37,6 +37,7 @@ function CategoryBreakdown() {
     const defaultExpenses = snapshot.docs.map(doc => {
       return { id: doc.id, ...doc.data() }
     })
+
     combineCategories(defaultExpenses)
     // setExpenses(defaultExpenses)
   }
@@ -63,7 +64,7 @@ function CategoryBreakdown() {
 
     //now sort them
     var sortedCategories = combinedCategories.sort(function (x, y) {
-      return x.amount - y.amount;
+      return   y.amount - x.amount;
     });
 
     console.table(sortedCategories);
