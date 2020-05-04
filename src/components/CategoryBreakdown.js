@@ -86,7 +86,7 @@ function CategoryBreakdown() {
               <tr key={index}>
                 {console.log(expense)}
                 <td>{expense.category}</td>
-                <td>{expense.amount}</td>
+                <td>{expense.amount.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
