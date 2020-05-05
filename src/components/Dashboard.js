@@ -3,6 +3,9 @@ import ManageCategories from './ManageCategories'
 import CategoryBreakdown from './CategoryBreakdown'
 
 function Dashboard() {
+
+  const [activeMenuItem, setActiveMenuItem] = React.useState('menu-monthly-expenses')
+
   return (
     <div className="Home section">
       <div className="container">
@@ -12,13 +15,25 @@ function Dashboard() {
       </div>
       <div className="container">
         <div className="columns">
-          <div className="column is-one-third">
-            <ManageCategories />
+          <div className="column is-one-quarter">
+            <aside class="menu">
+              <ul class="menu-list">
+                {activeMenuItem === 'menu-monthly-expenses'
+                  ? <li className="has-background-white-ter"><a>Monthly Expenses</a></li>
+                  : <li onClick={() => setActiveMenuItem('menu-monthly-expenses')}><a>Monthly Expenses</a></li>
+                }
+                {activeMenuItem === 'menu-category-manager'
+                  ? <li className="has-background-white-ter"><a>Category Manager</a></li>
+                  : <li onClick={() => setActiveMenuItem('menu-category-manager')}><a>Category Manager</a></li>
+                }
+              </ul>
+            </aside>
           </div>
           <div className="column">
             <div className="content">
               {/* <Expenses /> */}
-              <CategoryBreakdown />
+              {activeMenuItem === 'menu-monthly-expenses' && <CategoryBreakdown />}
+              {activeMenuItem === 'menu-category-manager' && <ManageCategories />}
             </div>
           </div>
         </div>
