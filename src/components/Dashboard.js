@@ -29,13 +29,11 @@ function Dashboard() {
               </ul>
             </aside>
           </div>
-          <div className="column">
-            <div className="content">
+
               {/* <Expenses /> */}
               {activeMenuItem === 'menu-monthly-expenses' && <CategoryBreakdown />}
               {activeMenuItem === 'menu-category-manager' && <ManageCategories />}
-            </div>
-          </div>
+
         </div>
       </div>
     </div>

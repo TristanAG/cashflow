@@ -43,36 +43,41 @@ function ManageCategories() {
   }
 
   return (
-    <div className="content">
-      <p className="has-text-primary">Category Manager</p>
-      <form onSubmit={handleSubmit}>
-        <div className="category-list">
-          <ul>
-            {preferences.map(pref => (
-              <li key={pref} onClick={() => { handleDeleteClick(pref) }}>{pref} <a className="delete is-small"></a></li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="field">
-          <label className="label">New Category</label>
-          <div className="control">
-            <input
-              name="newCategory"
-              onChange={handleChange}
-              value={values.newCategory}
-              placeholder="add new category"
-              autoComplete="off"
-              type="text"
-              // className={errors.url && 'has-text-danger'}
-              className="input"
-            />
-            {errors.category && <p className="has-text-danger">{errors.category}</p>}
+    <>
+      <div className="column">
+        <div className="content">
+          <h3 className="has-text-primary">Category Manager</h3>
+          <div className="category-list">
+            <ul>
+              {preferences.map(pref => (
+                <li key={pref} onClick={() => { handleDeleteClick(pref) }}>{pref} <a className="delete is-small"></a></li>
+              ))}
+            </ul>
           </div>
         </div>
-        <button className="button full-width" type="submit">Update Categories</button>
-      </form>
-    </div>
+      </div>
+      <div className="column">
+        <form onSubmit={handleSubmit}>
+        <div className="field">
+          <label className="label">New Category</label>
+            <div className="control">
+              <input
+                name="newCategory"
+                onChange={handleChange}
+                value={values.newCategory}
+                placeholder="add new category"
+                autoComplete="off"
+                type="text"
+                // className={errors.url && 'has-text-danger'}
+                className="input"
+              />
+              {errors.category && <p className="has-text-danger">{errors.category}</p>}
+            </div>
+          </div>
+          <button className="button full-width" type="submit">Update Categories</button>
+        </form>
+      </div>
+    </>
   )
 }
 

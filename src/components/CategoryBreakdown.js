@@ -73,8 +73,8 @@ function CategoryBreakdown() {
   }
 
   return (
-    <div>
-      <p className="has-text-primary">Category Breakdown</p>
+    <div className="column">
+      <h3 className="has-text-primary">Monthly Expenses</h3>
         <p>{month} {year} total amount spent per category</p>
         <table className="table is-striped is-full-width">
           <tbody>
