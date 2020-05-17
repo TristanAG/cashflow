@@ -10,18 +10,21 @@ function CategoryBreakdown() {
   const [combinedExpenses, setCombinedExpenses] = React.useState([])
   const [month, setMonth] = React.useState(moment(Date.now()).format('MMMM'))
   const [year, setYear] = React.useState(moment(Date.now()).format('YYYY'))
+  const [modal, setModal] = React.useState(false)
 
   React.useEffect(() => {
     if (user) {
-      getExpenses()
+      getInitialExpenses()
     }
   }, [user])
 
-  function getExpenses(filter) {
+  function getInitialExpenses() {
     const month = moment(Date.now()).format('MMMM')
     const year = moment(Date.now()).format('YYYY')
+    queryExpenses(month, year)
+  }
 
-    //sort firebase query by Category
+  function queryExpenses(month, year) {
     firebase.db
       .collection('expenses')
       .where("postedBy.id", "==", user.uid)
@@ -70,12 +73,76 @@ function CategoryBreakdown() {
     console.table(sortedCategories);
 
     setExpenses(sortedCategories)
+
+  }
+
+  function updateExpensesList(month, year) {
+    alert('update me')
+    queryExpenses(month, year)
+
+  }
+
+  function updateMonthValue(e) {
+    // alert('update month value')
+    setMonth(e.target.value)
+  }
+
+  function updateYearValue(e) {
+    // alert('update month value')
+    setYear(e.target.value)
   }
 
   return (
     <div className="column">
-      <h3 className="has-text-primary">Monthly Expenses</h3>
+      <div className="content">
+        <h3 className="has-text-primary">Monthly Expenses</h3>
         <p>{month} {year} total amount spent per category</p>
+        <p className="change-month has-text-info" onClick={() => setModal(!modal)}><i className="fa fa-calendar" aria-hidden="true"></i> Change Month</p>
+
+
+
+        <div className={modal ? "modal is-active" : "modal"}>
+          <div onClick={() => setModal(!modal)} className="modal-background"></div>
+          <div className="modal-card">
+            <header className="modal-card-head">
+              <p className="modal-card-title">
+                <p className="has-text-info"><i className="fa fa-calendar" aria-hidden="true"></i> Change Month</p>
+              </p>
+              <button onClick={() => setModal(!modal)} className="delete" aria-label="close"></button>
+            </header>
+            <section className="modal-card-body">
+              <p>Currently showing expenses for {month} {year}</p>
+              <div className="select">
+                <select onChange={updateMonthValue}>
+                  <option>{month}</option>
+                  <option>January</option>
+                  <option>February</option>
+                  <option>March</option>
+                  <option>April</option>
+                  <option>May</option>
+                  <option>June</option>
+                  <option>July</option>
+                  <option>August</option>
+                  <option>September</option>
+                  <option>October</option>
+                  <option>November</option>
+                  <option>December</option>
+                </select>
+              </div>
+              &nbsp;&nbsp;
+              <div className="select">
+                <select onChange={updateYearValue}>
+                  <option>{year}</option>
+                </select>
+              </div>
+            </section>
+            <footer className="modal-card-foot">
+              <button onClick={() => updateExpensesList(month, year)} className="button is-success">Save</button>
+              <button onClick={() => setModal(!modal)} className="button">Cancel</button>
+            </footer>
+          </div>
+        </div>
+
         <table className="table is-striped is-full-width">
           <tbody>
             <tr>
@@ -85,13 +152,13 @@ function CategoryBreakdown() {
 
             {expenses.map((expense, index) => (
               <tr key={index}>
-                {console.log(expense)}
                 <td>{expense.category}</td>
                 <td>{expense.amount.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
     </div>
   )
 }

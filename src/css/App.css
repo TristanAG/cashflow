@@ -85,3 +85,7 @@
 table {
   width: 100%;
 }
+
+.change-month {
+  cursor: pointer;
+}
