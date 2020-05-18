@@ -48,12 +48,35 @@ function ManageCategories() {
         <div className="content">
           <h3 className="has-text-primary">Category Manager</h3>
           <div className="category-list">
-            <ul>
-              {preferences.map(pref => (
-                <li key={pref} onClick={() => { handleDeleteClick(pref) }}>{pref} <a className="delete is-small"></a></li>
-              ))}
-            </ul>
+            {/* <ul> */}
+              {/* {preferences.map(pref => (
+                <><div key={pref} onClick={() => { handleDeleteClick(pref) }}>{pref} <a className="delete is-pulled-right is-small"></a></div><hr /></>
+              ))} */}
+            {/* </ul> */}
           </div>
+
+
+
+          <table className="table is-striped is-full-width">
+            <tbody>
+              <tr>
+                <th>Category</th>
+                <th>Total Spent</th>
+              </tr>
+
+              {preferences.map((pref) => (
+                <tr key={pref}>
+                  <td>{pref}</td>
+                  <td>
+                    <div onClick={() => { handleDeleteClick(pref) }}><a className="delete is-pulled-right is-small"></a></div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+
+
         </div>
       </div>
       <div className="column">
