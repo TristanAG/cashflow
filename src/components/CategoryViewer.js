@@ -4,16 +4,19 @@ import moment from 'moment'
 import Expense from './Expense'
 
 function CategoryViewer() {
-  const { user, firebase } = React.useContext(FirebaseContext)
+  const { user, preferences, firebase } = React.useContext(FirebaseContext)
   const [expenses, setExpenses] = React.useState([])
   const [combinedExpenses, setCombinedExpenses] = React.useState([])
   const [month, setMonth] = React.useState(moment(Date.now()).format('MMMM'))
   const [year, setYear] = React.useState(moment(Date.now()).format('YYYY'))
   const [modal, setModal] = React.useState(false)
+  const [categories, setCategories] = React.useState([])
+
+  // const { user, preferences, updatePreferences, firebase } = React.useContext(FirebaseContext)
 
   React.useEffect(() => {
     if (user) {
-      getInitialExpenses()
+      // getInitialExpenses()
     }
   }, [user])
 
@@ -22,6 +25,8 @@ function CategoryViewer() {
     const year = moment(Date.now()).format('YYYY')
     queryExpenses(month, year)
   }
+
+
 
   function queryExpenses(month, year) {
     firebase.db
@@ -83,6 +88,59 @@ function CategoryViewer() {
     <div className="column">
       <div className="content">
         <h3 className="has-text-primary">Category Viewer</h3>
+        {/* <p>{preferences.length}</p>
+        {preferences.map((category) => (
+          <p>{category}</p>
+        ))} */}
+
+        <div className="select">
+          <select onChange={updateMonthValue}>
+            {preferences.map((category) => (
+              <option>{category}</option>
+            ))}
+            {/* <option>{month}</option>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option> */}
+          </select>
+        </div>
+        &nbsp;&nbsp;
+        <div className="select">
+          <select onChange={updateMonthValue}>
+            <option>{month}</option>
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+          </select>
+        </div>
+        &nbsp;&nbsp;
+        <div className="select">
+          <select onChange={updateYearValue}>
+            <option>{year}</option>
+          </select>
+        </div>
+
+
+
+
         {/* <p>{month} {year} total amount spent per category</p>
         <p className="change-month has-text-info" onClick={() => setModal(!modal)}><i className="fa fa-calendar" aria-hidden="true"></i> Change Month</p>
         <div className={modal ? "modal is-active" : "modal"}>
