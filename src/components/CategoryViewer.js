@@ -3,7 +3,7 @@ import { FirebaseContext } from '../firebase'
 import moment from 'moment'
 import Expense from './Expense'
 
-function CategoryExpenses() {
+function CategoryViewer() {
   const { user, firebase } = React.useContext(FirebaseContext)
   const [expenses, setExpenses] = React.useState([])
   const [combinedExpenses, setCombinedExpenses] = React.useState([])
@@ -82,7 +82,7 @@ function CategoryExpenses() {
   return (
     <div className="column">
       <div className="content">
-        <h3 className="has-text-primary">Category Expenses</h3>
+        <h3 className="has-text-primary">Category Viewer</h3>
         {/* <p>{month} {year} total amount spent per category</p>
         <p className="change-month has-text-info" onClick={() => setModal(!modal)}><i className="fa fa-calendar" aria-hidden="true"></i> Change Month</p>
         <div className={modal ? "modal is-active" : "modal"}>
@@ -148,4 +148,4 @@ function CategoryExpenses() {
   )
 }
 
-export default CategoryExpenses
+export default CategoryViewer
