@@ -1,6 +1,7 @@
 import React from 'react'
 import ManageCategories from './ManageCategories'
 import CategoryBreakdown from './CategoryBreakdown'
+import CategoryExpenses from './CategoryExpenses'
 
 function Dashboard() {
 
@@ -22,6 +23,10 @@ function Dashboard() {
                   ? <li className="has-background-white-ter"><a>Monthly Expenses</a></li>
                   : <li onClick={() => setActiveMenuItem('menu-monthly-expenses')}><a>Monthly Expenses</a></li>
                 }
+                {activeMenuItem === 'menu-category-expenses'
+                  ? <li className="has-background-white-ter"><a>Category Expenses</a></li>
+                  : <li onClick={() => setActiveMenuItem('menu-category-expenses')}><a>Category Expenses</a></li>
+                }
                 {activeMenuItem === 'menu-category-manager'
                   ? <li className="has-background-white-ter"><a>Category Manager</a></li>
                   : <li onClick={() => setActiveMenuItem('menu-category-manager')}><a>Category Manager</a></li>
@@ -33,6 +38,7 @@ function Dashboard() {
               {/* <Expenses /> */}
               {activeMenuItem === 'menu-monthly-expenses' && <CategoryBreakdown />}
               {activeMenuItem === 'menu-category-manager' && <ManageCategories />}
+              {activeMenuItem === 'menu-category-expenses' && <CategoryExpenses />}
 
         </div>
       </div>

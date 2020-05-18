@@ -3,7 +3,7 @@ import { FirebaseContext } from '../firebase'
 import moment from 'moment'
 import Expense from './Expense'
 
-function CategoryBreakdown() {
+function CategoryExpenses() {
   const { user, firebase } = React.useContext(FirebaseContext)
   const [expenses, setExpenses] = React.useState([])
   const [combinedExpenses, setCombinedExpenses] = React.useState([])
@@ -82,8 +82,8 @@ function CategoryBreakdown() {
   return (
     <div className="column">
       <div className="content">
-        <h3 className="has-text-primary">Monthly Expenses</h3>
-        <p>{month} {year} total amount spent per category</p>
+        <h3 className="has-text-primary">Category Expenses</h3>
+        {/* <p>{month} {year} total amount spent per category</p>
         <p className="change-month has-text-info" onClick={() => setModal(!modal)}><i className="fa fa-calendar" aria-hidden="true"></i> Change Month</p>
         <div className={modal ? "modal is-active" : "modal"}>
           <div onClick={() => setModal(!modal)} className="modal-background"></div>
@@ -142,10 +142,10 @@ function CategoryBreakdown() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
       </div>
     </div>
   )
 }
 
-export default CategoryBreakdown
+export default CategoryExpenses
