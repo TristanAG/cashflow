@@ -19,6 +19,7 @@ function ManageCategories() {
   const { handleSubmit, handleChange, handleBlur, values, errors } = useFormValidation(INITIAL_STATE, validatePreferences, handleUpdatePreferences, preferences)
   const [userPreferences, setUserPreferences] = React.useState([])
   const [newCategory, setNewCategory] = React.useState('')
+  const [modal, setModal] = React.useState(false)
 
   function handleUpdatePreferences() {
     const { newCategory } = values
@@ -47,12 +48,24 @@ function ManageCategories() {
       <div className="column">
         <div className="content">
           <h3 className="has-text-primary">Category Manager</h3>
-          <div className="category-list">
-            {/* <ul> */}
-              {/* {preferences.map(pref => (
-                <><div key={pref} onClick={() => { handleDeleteClick(pref) }}>{pref} <a className="delete is-pulled-right is-small"></a></div><hr /></>
-              ))} */}
-            {/* </ul> */}
+          <p className="change-month has-text-info" onClick={() => setModal(!modal)}><i className="fa fa-calendar" aria-hidden="true"></i> Add New Category</p>
+          <div className={modal ? "modal is-active" : "modal"}>
+            <div onClick={() => setModal(!modal)} className="modal-background"></div>
+            <div className="modal-card">
+              <header className="modal-card-head">
+                <p className="modal-card-title">
+                  <p className="has-text-info"><i className="fa fa-plus" aria-hidden="true"></i> Add New Category</p>
+                </p>
+                <button onClick={() => setModal(!modal)} className="delete" aria-label="close"></button>
+              </header>
+              <section className="modal-card-body">
+
+              </section>
+              <footer className="modal-card-foot">
+                <button className="button is-success">Save</button>
+                <button onClick={() => setModal(!modal)} className="button">Cancel</button>
+              </footer>
+            </div>
           </div>
 
 
