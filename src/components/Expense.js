@@ -13,13 +13,16 @@ function Expense({ expense, index }) {
   }
 
   return (
-    <div className={!isDeleting ? "card" : "card is-deleting"}>
+    // <div className={!isDeleting ? "card" : "card is-deleting"}>
+    <div className="expense-listing">
       <div className="columns">
-        <div className="column is-one-fifth">
-          <p><b className="has-text-success">${expense.amount}</b></p>
-          <span className="tag is-light">{expense.category}</span>
+        <div className="column is-two-fifth">
+          <div className="tag is-light">{expense.category}</div>
         </div>
-        <div className="column is-three-fifths">
+        <div className="column is-one-fifth">
+          <b className="has-text-success">${expense.amount}</b>
+        </div>
+        <div className="column">
           <p> {expense.description}</p>
         </div>
         <div className="column has-text-right">
@@ -27,6 +30,7 @@ function Expense({ expense, index }) {
         </div>
       </div>
     </div>
+    // </div>
 
 
   )

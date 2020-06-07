@@ -89,3 +89,7 @@ table {
 .change-month {
   cursor: pointer;
 }
+
+.expense-listing {
+  margin-bottom: 8px;
+}
