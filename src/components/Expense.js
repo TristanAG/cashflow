@@ -13,26 +13,20 @@ function Expense({ expense, index }) {
   }
 
   return (
-    // <div className={!isDeleting ? "card" : "card is-deleting"}>
-    <div className="expense-listing">
-      <div className="columns">
-        <div className="column is-two-fifth">
-          <div className="tag is-light">{expense.category}</div>
-        </div>
-        <div className="column is-one-fifth">
-          <b className="has-text-success">${expense.amount}</b>
-        </div>
-        <div className="column">
-          <p> {expense.description}</p>
-        </div>
-        <div className="column has-text-right">
-          {!isDeleting && <button className="delete" onClick={handleDeleteExpense}></button>}
-        </div>
-      </div>
-    </div>
-    // </div>
-
-
+    <tr className="is-fullwidth">
+      <td>
+        <div className="tag is-light">{expense.category}</div>
+      </td>
+      <td>
+        <b className="has-text-success">${expense.amount}</b>
+      </td>
+      <td>
+        <p> {expense.description}</p>
+      </td>
+      <td className="has-text-right">
+        {!isDeleting && <button className="delete" onClick={handleDeleteExpense}></button>}
+      </td>
+    </tr>
   )
 }
 

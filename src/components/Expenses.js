@@ -143,11 +143,14 @@ function Expenses() {
         <span id="week-filter" className={filter === "week-filter" ? filterSelected : filterDefault} onClick={handleFilter}>Week</span>
         <span id="month-filter" className={filter === "month-filter" ? filterSelected : filterDefault} onClick={handleFilter}>Month</span>
       </div>
-      <div>
-        {expenses.map((expense, index) => (
-          <Expense key={expense.id} expense={expense} index={index + 1} />
-        ))}
-      </div>
+
+      <table className="table">
+        <tbody>
+          {expenses.map((expense, index) => (
+            <Expense key={expense.id} expense={expense} index={index + 1} />
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }
