@@ -35,15 +35,17 @@ function Nav() {
       </div>
 
       <div className={isActive ? 'navbar-menu is-active' : 'navbar-menu'} id="navMenu">
-        <div className="navbar-start">
-          <Link to="/" className="navbar-item" onClick={closeNavOnMobile}>
-            Expenses
-          </Link>
+        {user &&
+          <div className="navbar-start">
+            <Link to="/" className="navbar-item" onClick={closeNavOnMobile}>
+              Expenses
+            </Link>
 
-          <Link to="/dashboard/" className="navbar-item" onClick={closeNavOnMobile}>
-            Dashboard
-          </Link>
-        </div>
+            <Link to="/dashboard/" className="navbar-item" onClick={closeNavOnMobile}>
+              Dashboard
+            </Link>
+          </div>
+        }
 
         <div className="navbar-end">
           <div className="navbar-item">

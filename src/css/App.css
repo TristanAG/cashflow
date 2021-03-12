@@ -93,3 +93,19 @@ table {
 .expense-listing {
   margin-bottom: 8px;
 }
+
+.home-hero {
+  width: 100%;
+  text-align: center;
+  height: 100px;
+
+
+}
+
+.card {
+  border: 2px solid hsl(48, 100%, 67%);
+}
+
+.center {
+  text-align: center;
+}
