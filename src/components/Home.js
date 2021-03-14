@@ -37,7 +37,7 @@ function Home() {
 
             <div className="columns">
               <div className="column is-one-quarter">
-                <div className="content">
+                <div className="content text">
                   <p>Manage and categorize your expenses in your Dashboard</p>
                 </div>
               </div>
@@ -59,7 +59,7 @@ function Home() {
                 </div>
               </div>
               <div className="column">
-                <div className="content">
+                <div className="content text">
                   <p>Add your own categories to track what's relevant to you</p>
                 </div>
               </div>
@@ -67,7 +67,7 @@ function Home() {
 
             <div className="columns">
               <div className="column is-one-third">
-                <div className="content">
+                <div className="content text">
                   <p>Zoom in for monthly, weekly, or daily views of your spending</p>
                 </div>
               </div>
@@ -89,7 +89,7 @@ function Home() {
                 </div>
               </div>
               <div className="column">
-                <div className="content">
+                <div className="content text">
                   <p>View how much money you've put towards your categories // determine where most of your money is going and gain insight</p>
                 </div>
               </div>
